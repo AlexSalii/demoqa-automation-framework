@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2' // для отчетов
+}
+
+group 'com.demoqa.bookstore'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Playwright
+    testImplementation 'com.microsoft.playwright:playwright:1.43.0'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    // RestAssured для API тестов
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+
+    // ExtentReports
+    testImplementation 'com.aventstack:extentreports:5.1.1'
+
+    // Lombok (удобные data-классы для API моделей)
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // JsonPath — работа с json
+    testImplementation 'com.jayway.jsonpath:json-path:2.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
