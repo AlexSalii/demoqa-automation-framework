@@ -28,7 +28,15 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage login(String username, String password) {
+    public ProfilePage login(String username, String password) {
+        usernameInput.fill(username);
+        passwordInput.fill(password);
+        loginButton.click();
+
+        return new ProfilePage(page);
+    }
+
+    public LoginPage attemptLogin(String username, String password) {
         usernameInput.fill(username);
         passwordInput.fill(password);
         loginButton.click();
@@ -36,8 +44,8 @@ public class LoginPage {
         return this;
     }
 
-    public boolean isOnProfilePage() {
-        return page.url().equals(getBaseUrl() + "/profile");
+    public boolean isCurrentPage() {
+        return page.url().equals(getBaseUrl() + "/login");
     }
 
     public String getErrorMessage() {
