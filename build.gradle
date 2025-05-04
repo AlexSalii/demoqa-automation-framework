@@ -17,18 +17,21 @@ dependencies {
     // JUnit 5
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 
-    // RestAssured для API тестов
+    // RestAssured for API tests
     testImplementation 'io.rest-assured:rest-assured:5.4.0'
 
     // ExtentReports
     testImplementation 'com.aventstack:extentreports:5.1.1'
 
-    // Lombok (удобные data-классы для API моделей)
+    // Lombok (convenient data classes for API models)
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-    // JsonPath — работа с json
+    // JsonPath — working with json
     testImplementation 'com.jayway.jsonpath:json-path:2.9.0'
+
+    // Library for generating fake data
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {
