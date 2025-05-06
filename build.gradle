@@ -27,8 +27,14 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
+    testImplementation 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
     // JsonPath — working with json
     testImplementation 'com.jayway.jsonpath:json-path:2.9.0'
+
+    // Used for JSON (de)serialization of API request/response DTOs
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
 
     // Library for generating fake data
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
