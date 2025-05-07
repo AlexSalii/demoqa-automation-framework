@@ -3,8 +3,10 @@ package base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.microsoft.playwright.*;
+import context.UserContext;
 import org.junit.jupiter.api.*;
 
+import services.AuthService;
 import utils.ReportManager;
 
 public class BaseTest {
@@ -15,6 +17,9 @@ public class BaseTest {
 
     protected static ExtentReports extent;
     protected ExtentTest test;
+
+    protected static ThreadLocal<UserContext> user = new ThreadLocal<>();
+
 
     @BeforeAll
     static void globalSetup() {
@@ -40,6 +45,15 @@ public class BaseTest {
     @AfterEach
     void teardown() {
         if (context != null) context.close();
+    }
+
+    @AfterEach
+    void cleanUpUser() {
+        UserContext u = user.get();
+        if (u != null && u.getToken() != null && u.getUserId() != null) {
+            AuthService.deleteUser(u.getUserId(), u.getToken());
+        }
+        user.remove();
     }
 }
 
