@@ -1,6 +1,7 @@
 package tests.ui;
 
 import base.BaseTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.ProfilePage;
@@ -11,9 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    // NOTE: For this test, the user was created manually on the login page beforehand.
-    // Later this can be replaced with API-based user registration for better automation.
     @Test
+    @Tag("skipCleanup")
     void loginWithValidCredentials_shouldNavigateToProfilePage() {
         String userName = "testValidUser";
         String userPassword = "testValidPassword1@";

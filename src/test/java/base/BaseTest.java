@@ -48,7 +48,11 @@ public class BaseTest {
     }
 
     @AfterEach
-    void cleanUpUser() {
+    void cleanUpUser(TestInfo testInfo) {
+        if (testInfo.getTags().contains("skipCleanup")) {
+            return; // Пропустить удаление
+        }
+
         UserContext u = user.get();
         if (u != null && u.getToken() != null && u.getUserId() != null) {
             AuthService.deleteUser(u.getUserId(), u.getToken());
