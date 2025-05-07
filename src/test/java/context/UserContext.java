@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UserContext {
-    private String username;
+    private String userName;
     private String password;
     private String userId;
     private String token;
