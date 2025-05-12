@@ -43,6 +43,7 @@ public class BaseTest {
     @AfterEach
     void teardown() {
         if (context != null) context.close();
+        extent.flush();
     }
 
     @AfterEach

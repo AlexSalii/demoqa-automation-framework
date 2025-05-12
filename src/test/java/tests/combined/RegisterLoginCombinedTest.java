@@ -22,20 +22,23 @@ public class RegisterLoginCombinedTest extends BaseTest {
         String userPassword = FakeDataGenerator.randomPassword();
 
         // Register user via API
+        test.info("Register user via API");
         RegisterResponse registerResponse = AuthService.register(userName, userPassword);
         assertEquals(userName, registerResponse.getUsername());
         assertNotNull(registerResponse.getUserId());
 
-        log.info("User: {} was successfully created via API", userName);
+        test.info("User created via API");
 
         // Open login page via UI
         LoginPage loginPage = new LoginPage(page).open();
 
         ProfilePage profilePage = loginPage.login(userName, userPassword);
+        test.info("Login via UI");
+
         assertTrue(profilePage.isCurrentPage(), "Expected to be on profile page");
         assertEquals(userName, profilePage.getUsername(), "Username should match on profile page");
 
-        log.info("Login successful, profile page is visible");
+        test.info("Login successful, profile page is visible");
     }
 
     @Test
