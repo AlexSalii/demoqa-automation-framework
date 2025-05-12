@@ -38,6 +38,12 @@ dependencies {
 
     // Library for generating fake data
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
+
+    // SLF4J API
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+
+    // Logback implementation
+    runtimeOnly 'ch.qos.logback:logback-classic:1.5.16'
 }
 
 test {

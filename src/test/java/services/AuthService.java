@@ -4,14 +4,18 @@ import dto.request.GenerateTokenRequest;
 import dto.request.RegisterRequest;
 import dto.response.GenerateTokenResponse;
 import dto.response.RegisterResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static utils.ConfigReader.getBaseUrl;
 
+@Slf4j
 public class AuthService {
 
     public static RegisterResponse register(String username, String password) {
+        log.info("Sending login request for user: {}", username);
+
         return given()
                     .log().all()
                     .baseUri(getBaseUrl())
@@ -28,6 +32,8 @@ public class AuthService {
     }
 
     public static GenerateTokenResponse login(String username, String password) {
+        log.info("Sending registration request for user: {}", username);
+
         return given()
                     .baseUri(getBaseUrl())
                     .basePath("/Account/v1/GenerateToken")

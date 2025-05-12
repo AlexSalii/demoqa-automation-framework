@@ -2,9 +2,11 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import lombok.extern.slf4j.Slf4j;
 
 import static utils.ConfigReader.getBaseUrl;
 
+@Slf4j
 public class LoginPage {
     private final Page page;
 
@@ -23,12 +25,15 @@ public class LoginPage {
     }
 
     public LoginPage open() {
+        log.info("Navigating to login page");
         page.navigate(getBaseUrl() + "/login");
 
         return this;
     }
 
     public ProfilePage login(String username, String password) {
+        log.info("Logging in with user: {}", username);
+
         usernameInput.fill(username);
         passwordInput.fill(password);
         loginButton.click();
