@@ -21,4 +21,12 @@ public class ConfigReader {
     public static String getBaseUrl() {
         return properties.getProperty("baseUrl");
     }
+
+    public static String getString(String key) {
+        return properties.getProperty(key);
+    }
+
+    public static Boolean getBoolean(String key) {
+        return Boolean.parseBoolean(key);
+    }
 }

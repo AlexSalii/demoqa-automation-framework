@@ -7,6 +7,7 @@ import context.UserContext;
 import org.junit.jupiter.api.*;
 
 import services.AuthService;
+import utils.BrowserManager;
 import utils.ReportManager;
 
 public class BaseTest {
@@ -24,20 +25,17 @@ public class BaseTest {
     @BeforeAll
     static void globalSetup() {
         extent = ReportManager.getInstance();
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     @AfterAll
     static void globalTeardown() {
         if (extent != null) extent.flush();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+        BrowserManager.quit();
     }
 
     @BeforeEach
     void setup(TestInfo testInfo) {
-        context = browser.newContext();
+        context = BrowserManager.createBrowserContext();
         page = context.newPage();
         test = extent.createTest(testInfo.getDisplayName());
     }
@@ -50,7 +48,7 @@ public class BaseTest {
     @AfterEach
     void cleanUpUser(TestInfo testInfo) {
         if (testInfo.getTags().contains("skipCleanup")) {
-            return; // Пропустить удаление
+            return;
         }
 
         UserContext u = user.get();
